@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-eps-primary: #1a5276;
+  --color-eps-nav: #154360;
+  --color-eps-accent: #e74c3c;
+  --color-eps-success: #1e8449;
+  --color-eps-warning: #e67e22;
+  --color-eps-surface: #f4f6f8;
+  --color-eps-muted: #7f8c8d;
+  --color-eps-border: #d5d8dc;
+  --color-eps-text: #1c2833;
+  --color-eps-light-blue: #d6eaf8;
+  --color-eps-highlight: #ebf5fb;
+  --font-sans: "Source Sans 3", system-ui, sans-serif;
+
+  /* Typography scale (~+2px vs wireframe defaults at 16px root) */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.25rem;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.375rem;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.1875rem;
+  --text-lg--line-height: 1.625rem;
+  --text-xl: 1.3125rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.625rem;
+  --text-2xl--line-height: 2rem;
+}
+
+@layer base {
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    @apply bg-eps-surface text-eps-text font-sans text-base antialiased;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

@@ -1,0 +1,48 @@
+export const mockLocations = [
+  {
+    id: 'ips-ibague',
+    type: 'IPS',
+    name: 'IPS Ibagué Centro',
+    address: 'Cra. 5 #14-32',
+    hours: 'Lun–Vie 7am–6pm',
+    distance: 0.3,
+    city: 'Ibagué',
+    lat: 0.35,
+    lng: 0.45,
+  },
+  {
+    id: 'farmacia-ibague',
+    type: 'Farmacia',
+    name: 'Farmacia Nueva EPS Ibagué',
+    address: 'Cll 37 #5-12',
+    hours: 'Lun–Sáb 8am–8pm',
+    distance: 0.8,
+    city: 'Ibagué',
+    lat: 0.55,
+    lng: 0.3,
+  },
+  {
+    id: 'urgencias-llerias',
+    type: 'Urgencias',
+    name: 'Urgencias Hospital Federico Lleras',
+    address: 'Cra. 4 #19-51',
+    hours: '24 horas',
+    distance: 1.2,
+    city: 'Ibagué',
+    lat: 0.25,
+    lng: 0.65,
+  },
+  {
+    id: 'ips-norte',
+    type: 'IPS',
+    name: 'IPS Norte Tolima',
+    address: 'Av. Ambalá #12-40',
+    hours: 'Lun–Vie 7am–5pm',
+    distance: 2.1,
+    city: 'Ibagué',
+    lat: 0.7,
+    lng: 0.5,
+  },
+];
+
+export const filterOptions = ['Todos', 'IPS', 'Farmacia', 'Urgencias'];

@@ -9,7 +9,7 @@ export default function TimeSlotList({ date, slots, selectedSlot, onSelect }) {
 
   return (
     <div>
-      <p className="mb-3 text-[17px] font-bold text-eps-primary">
+      <p className="mb-3 text-[15px] font-bold text-eps-primary">
         {formatDateShort(date)} · Horas disponibles
       </p>
       <ul className="flex flex-col gap-2" role="listbox" aria-label="Horarios disponibles">
@@ -33,13 +33,13 @@ export default function TimeSlotList({ date, slots, selectedSlot, onSelect }) {
                 }`}
               >
                 <span
-                  className={`text-[17px] ${selected ? 'font-bold text-eps-primary' : disabled ? 'text-[#CCC]' : 'font-semibold'}`}
+                  className={`text-[15px] ${selected ? 'font-bold text-eps-primary' : disabled ? 'text-[#CCC]' : 'font-semibold'}`}
                 >
                   {slot.time}
                   {selected ? ' ✓ Seleccionado' : ''}
                 </span>
                 <span
-                  className={`text-[17px] font-semibold ${
+                  className={`text-[13px] font-semibold ${
                     disabled ? 'text-[#CCC]' : selected ? 'text-eps-primary' : 'text-eps-success'
                   }`}
                 >

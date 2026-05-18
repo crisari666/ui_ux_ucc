@@ -42,7 +42,7 @@ export default function ProfilePage() {
             </>
           ) : (
             <div className="py-12 text-center">
-              <p className="text-sm text-eps-muted">
+              <p className="text-base text-eps-muted">
                 La sección <strong>{activeTab}</strong> estará disponible en una versión futura
                 del portal.
               </p>

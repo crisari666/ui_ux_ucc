@@ -23,12 +23,12 @@ export default function BookingSuccessPage() {
         >
           ✓
         </div>
-        <h1 className="mb-2 text-2xl font-bold text-eps-primary">¡Cita confirmada!</h1>
-        <p className="mb-6 text-sm text-eps-muted">
+        <h1 className="mb-2 text-3xl font-bold text-eps-primary">¡Cita confirmada!</h1>
+        <p className="mb-6 text-base text-eps-muted">
           Tu cita ha sido agendada correctamente. Recibirás el recordatorio por los canales
           seleccionados.
         </p>
-        <p className="mb-8 rounded-lg bg-eps-highlight px-4 py-3 text-sm">
+        <p className="mb-8 rounded-lg bg-eps-highlight px-4 py-3 text-base">
           <span className="text-eps-muted">Número de autorización: </span>
           <strong className="text-eps-primary">{authNumber}</strong>
         </p>
@@ -40,7 +40,7 @@ export default function BookingSuccessPage() {
             Agendar otra cita
           </BtnSecondary>
         </div>
-        <Link to="/" className="mt-6 inline-block text-sm text-eps-primary hover:underline">
+        <Link to="/" className="mt-6 inline-block text-base text-eps-primary hover:underline">
           Volver al inicio
         </Link>
       </section>

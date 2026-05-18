@@ -75,8 +75,8 @@ export default function QuickAccessGrid({ highlightQuery, onComingSoon }) {
             >
               {card.icon}
             </div>
-            <h2 className="mb-1 text-sm font-bold text-eps-text">{card.title}</h2>
-            <p className="text-[17px] text-eps-muted">{card.desc}</p>
+            <h2 className="mb-1 text-base font-bold text-eps-text">{card.title}</h2>
+            <p className="text-[13px] text-eps-muted">{card.desc}</p>
           </button>
         );
       })}

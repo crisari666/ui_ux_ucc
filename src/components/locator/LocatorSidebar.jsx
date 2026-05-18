@@ -60,7 +60,7 @@ export default function LocatorSidebar({
                     📍 {loc.distance} km{ i === 0 ? ' · Más cercano' : ''}
                   </p>
                   <h3 className="text-sm font-bold text-eps-text">{loc.name}</h3>
-                  <p className="text-[17px] text-eps-muted">
+                  <p className="text-[13px] text-eps-muted">
                     {loc.address} · {loc.hours}
                   </p>
                 </button>

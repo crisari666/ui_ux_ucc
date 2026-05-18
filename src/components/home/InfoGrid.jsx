@@ -25,8 +25,8 @@ export default function InfoGrid() {
           key={item.title}
           className="border-t border-[#E8E8E8] p-7 odd:md:border-r odd:md:border-[#E8E8E8] md:px-8"
         >
-          <h2 className="mb-2 text-sm font-bold text-eps-primary">{item.title}</h2>
-          <p className="text-xs leading-relaxed text-[#666]">{item.text}</p>
+          <h2 className="mb-2 text-base font-bold text-eps-primary">{item.title}</h2>
+          <p className="text-[15px] leading-relaxed text-[#666]">{item.text}</p>
         </article>
       ))}
     </section>

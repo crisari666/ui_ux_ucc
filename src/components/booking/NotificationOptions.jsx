@@ -25,7 +25,7 @@ export default function NotificationOptions({ selected, onToggle }) {
               }`}
               aria-hidden
             />
-            <span className="text-sm font-semibold text-eps-primary">{opt.label}</span>
+            <span className="text-[15px] font-semibold text-eps-primary">{opt.label}</span>
           </button>
         );
       })}

@@ -34,7 +34,7 @@ export default function CalendarPicker({ viewDate, selectedDate, onSelectDate, o
         >
           ◀
         </button>
-        <h3 className="text-[17px] font-bold">
+        <h3 className="text-[15px] font-bold">
           {MONTHS[month]} {year}
         </h3>
         <button
@@ -48,7 +48,7 @@ export default function CalendarPicker({ viewDate, selectedDate, onSelectDate, o
       </div>
       <div className="grid grid-cols-7 gap-1 text-center" role="grid" aria-label="Calendario">
         {WEEKDAYS.map((d) => (
-          <div key={d} className="py-1 text-[17px] font-semibold text-[#999]" role="columnheader">
+          <div key={d} className="py-1 text-[13px] font-semibold text-[#999]" role="columnheader">
             {d}
           </div>
         ))}
@@ -77,7 +77,7 @@ export default function CalendarPicker({ viewDate, selectedDate, onSelectDate, o
           );
         })}
       </div>
-      <div className="mt-2.5 flex flex-wrap gap-3 text-[17px] text-[#666]">
+      <div className="mt-2.5 flex flex-wrap gap-3 text-[13px] text-[#666]">
         <span className="flex items-center gap-1.5">
           <span className="inline-block h-3 w-3 rounded-sm bg-eps-light-blue" />
           Disponible

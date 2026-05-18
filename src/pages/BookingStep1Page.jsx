@@ -7,7 +7,7 @@ import { consultTypes, ipsOptions, affiliateOptions } from '../data/mockUser';
 
 const labelClass = 'text-sm font-semibold text-[#444]';
 const inputClass =
-  'rounded-md border-[1.5px] border-eps-border px-3 py-2.5 text-[17px] text-[#333] outline-none focus:border-eps-primary';
+  'rounded-md border-[1.5px] border-eps-border px-3 py-2.5 text-[15px] text-[#333] outline-none focus:border-eps-primary';
 
 export default function BookingStep1Page() {
   const navigate = useNavigate();

@@ -19,8 +19,8 @@ export default function ProfileSidebar({ activeTab, onTabChange }) {
       >
         {mockUser.initials}
       </div>
-      <p className="text-center text-[17px] font-semibold text-white">{mockUser.name}</p>
-      <p className="mb-5 text-center text-[17px] text-white/50">
+      <p className="text-center text-[15px] font-semibold text-white">{mockUser.name}</p>
+      <p className="mb-5 text-center text-[13px] text-white/50">
         {mockUser.id} · {mockUser.regime}
       </p>
       <nav aria-label="Menú de perfil">

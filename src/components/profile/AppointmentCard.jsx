@@ -14,8 +14,8 @@ export default function AppointmentCard({ appointment }) {
       }`}
     >
       <div>
-        <h3 className="text-[17px] font-bold text-eps-text">{appointment.title}</h3>
-        <p className="text-[17px] text-eps-muted">📅 {appointment.detail}</p>
+        <h3 className="text-[15px] font-bold text-eps-text">{appointment.title}</h3>
+        <p className="text-[13px] text-eps-muted">📅 {appointment.detail}</p>
       </div>
       <span className={`self-start rounded-full px-2 py-0.5 text-[12px] font-bold ${badge}`}>
         {appointment.status}

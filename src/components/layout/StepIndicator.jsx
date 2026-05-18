@@ -5,7 +5,7 @@ const STEPS = [
 ];
 
 function circleClass(status) {
-  const base = 'flex h-8 w-8 items-center justify-center rounded-full text-[17px] font-bold';
+  const base = 'flex h-9 w-9 items-center justify-center rounded-full text-[15px] font-bold';
   if (status === 'active') return `${base} bg-eps-primary text-white`;
   if (status === 'done') return `${base} bg-eps-success text-white`;
   return `${base} bg-[#E8E8E8] text-[#999]`;
@@ -32,7 +32,7 @@ export default function StepIndicator({ currentStep }) {
                 {status === 'done' ? '✓' : step.id}
               </div>
               <span
-                className={`text-[17px] ${
+                className={`text-[13px] ${
                   status === 'active' ? 'font-semibold text-eps-primary' : 'text-[#666]'
                 }`}
               >

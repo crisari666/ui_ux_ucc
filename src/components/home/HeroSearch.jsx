@@ -11,7 +11,7 @@ export default function HeroSearch({ onSearch }) {
   return (
     <section className="bg-gradient-to-br from-eps-primary to-[#21618C] px-6 py-12 text-center text-white md:py-14">
       <h1 className="mb-2 text-2xl font-bold md:text-[30px]">¿Qué necesitas hoy?</h1>
-      <p className="mb-6 text-[17px] opacity-80">
+      <p className="mb-6 text-[15px] opacity-80">
         Gestiona tus servicios de salud sin filas, sin esperas.
       </p>
       <form
@@ -28,7 +28,7 @@ export default function HeroSearch({ onSearch }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Busca una cita, autorización, certificado..."
-          className="flex-1 border-none px-4 py-3 text-[17px] text-[#333] outline-none"
+          className="flex-1 border-none px-4 py-3 text-[15px] text-[#333] outline-none"
         />
         <button
           type="submit"

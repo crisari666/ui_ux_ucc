@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 const defaultBooking = {
   consultType: 'Medicina general',
@@ -16,11 +16,13 @@ const BookingContext = createContext(null);
 export function BookingProvider({ children }) {
   const [booking, setBooking] = useState(defaultBooking);
 
-  const updateBooking = (patch) => {
+  const updateBooking = useCallback((patch) => {
     setBooking((prev) => ({ ...prev, ...patch }));
-  };
+  }, []);
 
-  const resetBooking = () => setBooking({ ...defaultBooking });
+  const resetBooking = useCallback(() => {
+    setBooking({ ...defaultBooking });
+  }, []);
 
   const isStep1Complete = Boolean(booking.consultType && booking.ips && booking.affiliate);
   const isStep2Complete = Boolean(booking.date && booking.timeSlot);
@@ -33,7 +35,7 @@ export function BookingProvider({ children }) {
       isStep1Complete,
       isStep2Complete,
     }),
-    [booking, isStep1Complete, isStep2Complete],
+    [booking, updateBooking, resetBooking, isStep1Complete, isStep2Complete],
   );
 
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;

@@ -7,7 +7,7 @@ import { consultTypes, ipsOptions, affiliateOptions } from '../data/mockUser';
 
 const labelClass = 'text-sm font-semibold text-[#444]';
 const inputClass =
-  'rounded-md border-[1.5px] border-eps-border px-3 py-2.5 text-[15px] text-[#333] outline-none focus:border-eps-primary';
+  'box-border h-11 w-full rounded-md border-[1.5px] border-eps-border bg-white px-3 text-[15px] leading-normal text-[#333] outline-none focus:border-eps-primary';
 
 export default function BookingStep1Page() {
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ export default function BookingStep1Page() {
 
 function Field({ label, htmlFor, children }) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex min-w-0 flex-col gap-1.5">
       <label htmlFor={htmlFor} className={labelClass}>
         {label}
       </label>

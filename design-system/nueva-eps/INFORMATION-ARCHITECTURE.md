@@ -7,6 +7,16 @@
 **Patrón recomendado:** Enterprise Gateway + Accessible & Ethical (salud pública, WCAG)  
 **Última revisión:** 2026-05-18
 
+### Mapa visual (3 pasos)
+
+Abre en el navegador: [`information-architecture-map.html`](./information-architecture-map.html)
+
+Sigue el método de [UI from Mars — Arquitectura de la información](https://uifrommars.com/arquitectura-de-la-informacion/):
+
+1. **Inventario** — tarjetas de contenido y funciones  
+2. **Agrupación** — card sorting por áreas de negocio  
+3. **Mapa por niveles** — jerarquía con colores (estilo Nielsen Norman)
+
 ---
 
 ## 1. Propósito y alcance

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arquitectura de información — Nueva EPS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --eps-nav: #154360;
+      --eps-primary: #1a5276;
+      --eps-success: #1e8449;
+      --eps-surface: #f4f6f8;
+      --eps-border: #d5d8dc;
+      --eps-text: #1c2833;
+      --eps-muted: #7f8c8d;
+      --level-0: #154360;
+      --level-1: #1a5276;
+      --level-2: #2874a6;
+      --level-3: #5dade2;
+      --level-4: #aed6f1;
+      --planned: #95a5a6;
+      --font: "Source Sans 3", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--eps-surface); color: var(--eps-text); line-height: 1.5; font-size: 15px; }
+    .page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header.doc-header {
+      background: linear-gradient(135deg, var(--eps-nav), var(--eps-primary));
+      color: #fff; padding: 2rem 1.25rem; margin: -2rem -1.25rem 2rem; border-radius: 0 0 12px 12px;
+    }
+    header.doc-header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem; }
+    header.doc-header p { opacity: 0.85; font-size: 0.95rem; max-width: 56ch; }
+    header.doc-header a { color: #5dade2; }
+    .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+    .pillar { background: #fff; border: 1px solid var(--eps-border); border-radius: 10px; padding: 1rem; border-top: 4px solid var(--eps-primary); }
+    .pillar h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--eps-primary); margin-bottom: 0.35rem; }
+    .pillar p { font-size: 0.88rem; color: #555; }
+    section { margin-bottom: 3rem; }
+    section > h2 { font-size: 1.15rem; color: var(--eps-primary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem; }
+    section > h2 .step {
+      background: var(--eps-nav); color: #fff; width: 1.75rem; height: 1.75rem; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700;
+    }
+    section > .subtitle { color: var(--eps-muted); font-size: 0.9rem; margin-bottom: 1.25rem; }
+    .inventory { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .inv-card {
+      background: #fff; border: 1.5px solid var(--eps-border); border-radius: 8px;
+      padding: 0.5rem 0.75rem; font-size: 0.82rem; font-weight: 600;
+    }
+    .inv-card.done { border-color: var(--eps-success); background: #eafaf1; }
+    .inv-card.planned { border-style: dashed; color: #666; background: #fafafa; }
+    .groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .group-box { background: #fff; border-radius: 12px; border: 2px solid var(--eps-border); overflow: hidden; }
+    .group-box header { padding: 0.65rem 1rem; font-weight: 700; font-size: 0.9rem; color: #fff; }
+    .group-box.public header { background: var(--level-1); }
+    .group-box.transaction header { background: var(--eps-success); }
+    .group-box.hub header { background: var(--level-2); }
+    .group-box.location header { background: #8e44ad; }
+    .group-box.support header { background: var(--planned); }
+    .group-box ul { list-style: none; padding: 0.75rem 1rem; }
+    .group-box li {
+      font-size: 0.85rem; padding: 0.35rem 0; border-bottom: 1px solid #eee;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .group-box li:last-child { border-bottom: none; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot.live { background: var(--eps-success); }
+    .dot.planned { background: var(--planned); }
+    .legend {
+      display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-bottom: 1.5rem; padding: 1rem;
+      background: #fff; border-radius: 10px; border: 1px solid var(--eps-border); font-size: 0.82rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.45rem; }
+    .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+    .map-wrap {
+      background: #fff; border: 1px solid var(--eps-border); border-radius: 12px;
+      padding: 1.5rem 1rem 2rem; overflow-x: auto;
+    }
+    .ia-tree { display: flex; flex-direction: column; align-items: center; min-width: 720px; }
+    .node { text-align: center; margin: 0.2rem 0; }
+    .node-box {
+      display: inline-block; padding: 0.55rem 1rem; border-radius: 8px; color: #fff;
+      font-weight: 600; font-size: 0.85rem; box-shadow: 0 2px 6px rgba(0,0,0,0.12); min-width: 130px;
+    }
+    .node-box small { display: block; font-weight: 400; font-size: 0.72rem; opacity: 0.9; margin-top: 0.15rem; }
+    .node-box.planned { opacity: 0.8; border: 2px dashed rgba(255,255,255,0.55); }
+    .level-0 .node-box { background: var(--level-0); font-size: 1rem; padding: 0.75rem 1.5rem; }
+    .level-1 .node-box { background: var(--level-1); }
+    .level-2 .node-box { background: var(--level-2); }
+    .level-3 .node-box { background: var(--level-3); color: var(--eps-text); }
+    .level-4 .node-box { background: var(--level-4); color: var(--eps-text); font-size: 0.78rem; min-width: 105px; }
+    .connector-v { width: 2px; height: 18px; background: var(--eps-border); margin: 0 auto; }
+    .branch-row {
+      display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap;
+      position: relative; padding-top: 10px; width: 100%;
+    }
+    .branch-row::before {
+      content: ""; position: absolute; top: 0; left: 8%; right: 8%;
+      height: 2px; background: var(--eps-border);
+    }
+    .branch-col {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1; min-width: 140px; max-width: 185px;
+    }
+    .branch-col > .connector-v:first-child { height: 10px; }
+    .sub-branch { display: flex; flex-direction: column; gap: 0.3rem; width: 100%; margin-top: 0.25rem; }
+    .flow-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px dashed var(--eps-border); width: 100%; }
+    .flow-section h3 { font-size: 0.95rem; color: var(--eps-primary); margin-bottom: 1rem; text-align: center; }
+    .flow-line { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.5rem; }
+    .flow-arrow { color: var(--eps-muted); font-size: 1.1rem; font-weight: 700; }
+    footer.doc-footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--eps-border); font-size: 0.8rem; color: var(--eps-muted); }
+    footer.doc-footer a { color: var(--eps-primary); }
+    @media print { body { background: #fff; } header.doc-header { margin: 0 0 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="doc-header">
+      <h1>Arquitectura de información — Nueva EPS</h1>
+      <p>
+        Mapa visual del portal (prototipo UI/UX). Proceso en 3 pasos: inventario → agrupación → mapa por niveles.
+        Basado en el método de
+        <a href="https://uifrommars.com/arquitectura-de-la-informacion/">UI from Mars</a>
+        y los pilares de Morville (contexto, usuarios, contenido).
+      </p>
+    </header>
+
+    <div class="pillars">
+      <article class="pillar"><h3>Contexto</h3><p>Portal EPS: afiliados, trámites de salud, red prestadora en Colombia.</p></article>
+      <article class="pillar"><h3>Usuarios</h3><p>Afiliado, familiar/cuidador, visitante. Prioridad móvil y tareas rápidas.</p></article>
+      <article class="pillar"><h3>Contenido</h3><p>Citas, IPS, trámites, certificados, PQRS, afiliación y ayuda.</p></article>
+    </div>
+
+    <section id="inventario">
+      <h2><span class="step">1</span> Inventario</h2>
+      <p class="subtitle">Tarjetas con todo el contenido y las funciones del producto.</p>
+      <div class="inventory">
+        <span class="inv-card done">Inicio + buscador</span>
+        <span class="inv-card done">Agendar cita</span>
+        <span class="inv-card done">Mis citas</span>
+        <span class="inv-card done">Encontrar IPS</span>
+        <span class="inv-card planned">Autorizaciones</span>
+        <span class="inv-card planned">Certificados</span>
+        <span class="inv-card planned">Incapacidades</span>
+        <span class="inv-card planned">Mis PQRS</span>
+        <span class="inv-card planned">Datos afiliación</span>
+        <span class="inv-card planned">Grupo familiar</span>
+        <span class="inv-card planned">Mis trámites</span>
+        <span class="inv-card planned">Ayuda</span>
+      </div>
+    </section>
+
+    <section id="agrupacion">
+      <h2><span class="step">2</span> Agrupación (card sorting)</h2>
+      <p class="subtitle">Cómo el usuario espera encontrar cada ítem al completar una tarea.</p>
+      <div class="groups">
+        <div class="group-box public">
+          <header>Público</header>
+          <ul>
+            <li><span class="dot live"></span> Inicio</li>
+            <li><span class="dot live"></span> Accesos rápidos</li>
+            <li><span class="dot live"></span> Info régimen</li>
+          </ul>
+        </div>
+        <div class="group-box transaction">
+          <header>Transaccional</header>
+          <ul>
+            <li><span class="dot live"></span> Paso 1 — Datos</li>
+            <li><span class="dot live"></span> Paso 2 — Fecha</li>
+            <li><span class="dot live"></span> Paso 3 — Confirmar</li>
+            <li><span class="dot live"></span> Éxito</li>
+          </ul>
+        </div>
+        <div class="group-box hub">
+          <header>Hub afiliado</header>
+          <ul>
+            <li><span class="dot live"></span> Mis citas</li>
+            <li><span class="dot planned"></span> Autorizaciones</li>
+            <li><span class="dot planned"></span> Certificados</li>
+            <li><span class="dot planned"></span> Más tabs…</li>
+          </ul>
+        </div>
+        <div class="group-box location">
+          <header>Ubicación</header>
+          <ul>
+            <li><span class="dot live"></span> Búsqueda + filtros</li>
+            <li><span class="dot live"></span> Lista de sedes</li>
+          </ul>
+        </div>
+        <div class="group-box support">
+          <header>Soporte</header>
+          <ul>
+            <li><span class="dot planned"></span> Mis trámites</li>
+            <li><span class="dot planned"></span> Ayuda</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="mapa">
+      <h2><span class="step">3</span> Mapa por niveles (color)</h2>
+      <p class="subtitle">Relaciones entre elementos — distinto de un simple listado de URLs.</p>
+
+      <div class="legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--level-0)"></span> N0 Raíz</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--level-1)"></span> N1 Áreas</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--level-2)"></span> N2 Secciones</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--level-3)"></span> N3 Pantallas</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--level-4)"></span> N4 Tabs / detalle</span>
+        <span class="legend-item"><span class="dot live"></span> Implementado</span>
+        <span class="legend-item"><span class="dot planned"></span> Planificado</span>
+      </div>
+
+      <div class="map-wrap">
+        <div class="ia-tree" role="img" aria-label="Mapa jerárquico del portal Nueva EPS">
+          <div class="node level-0">
+            <div class="node-box">Portal Nueva EPS<small>Nivel 0 · /</small></div>
+          </div>
+          <div class="connector-v"></div>
+
+          <div class="branch-row">
+            <div class="branch-col">
+              <div class="connector-v"></div>
+              <div class="node level-1"><div class="node-box">Inicio<small>/</small></div></div>
+              <div class="connector-v"></div>
+              <div class="sub-branch">
+                <div class="node level-3"><div class="node-box">Hero + buscador</div></div>
+                <div class="node level-3"><div class="node-box">Accesos rápidos</div></div>
+                <div class="node level-3"><div class="node-box">Info régimen</div></div>
+              </div>
+            </div>
+
+            <div class="branch-col">
+              <div class="connector-v"></div>
+              <div class="node level-1"><div class="node-box">Agendar cita<small>/citas/nueva</small></div></div>
+              <div class="connector-v"></div>
+              <div class="sub-branch">
+                <div class="node level-3"><div class="node-box">Paso 1</div></div>
+                <div class="node level-3"><div class="node-box">Paso 2</div></div>
+                <div class="node level-3"><div class="node-box">Paso 3</div></div>
+                <div class="node level-3"><div class="node-box">Confirmada</div></div>
+              </div>
+            </div>
+
+            <div class="branch-col">
+              <div class="connector-v"></div>
+              <div class="node level-1"><div class="node-box">Mi perfil<small>/mi-perfil</small></div></div>
+              <div class="connector-v"></div>
+              <div class="sub-branch">
+                <div class="node level-4"><div class="node-box">Mis citas ✓</div></div>
+                <div class="node level-4"><div class="node-box planned">Autorizaciones</div></div>
+                <div class="node level-4"><div class="node-box planned">Certificados</div></div>
+                <div class="node level-4"><div class="node-box planned">PQRS…</div></div>
+              </div>
+            </div>
+
+            <div class="branch-col">
+              <div class="connector-v"></div>
+              <div class="node level-1"><div class="node-box">Encontrar atención<small>/encontrar-atencion</small></div></div>
+              <div class="connector-v"></div>
+              <div class="sub-branch">
+                <div class="node level-3"><div class="node-box">Búsqueda</div></div>
+                <div class="node level-3"><div class="node-box">Filtros</div></div>
+                <div class="node level-3"><div class="node-box">Lista + mapa</div></div>
+              </div>
+            </div>
+
+            <div class="branch-col">
+              <div class="connector-v"></div>
+              <div class="node level-1"><div class="node-box planned">Soporte</div></div>
+              <div class="connector-v"></div>
+              <div class="sub-branch">
+                <div class="node level-3"><div class="node-box planned">Mis trámites</div></div>
+                <div class="node level-3"><div class="node-box planned">Ayuda</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-section">
+            <h3>Flujos principales</h3>
+            <div class="flow-line">
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Inicio</span></span>
+              <span class="flow-arrow">→</span>
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Agendar</span></span>
+              <span class="flow-arrow">→</span>
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Confirmada</span></span>
+              <span class="flow-arrow">→</span>
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Mis citas</span></span>
+            </div>
+            <div class="flow-line">
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Inicio</span></span>
+              <span class="flow-arrow">→</span>
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Encontrar IPS</span></span>
+              <span class="flow-arrow">→</span>
+              <span class="node level-3"><span class="node-box" style="font-size:0.78rem;padding:0.4rem 0.7rem">Seleccionar sede</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="doc-footer">
+      <p>Complemento: <strong>INFORMATION-ARCHITECTURE.md</strong></p>
+      <p style="margin-top:0.4rem">
+        Abrir: <code>design-system/nueva-eps/information-architecture-map.html</code> ·
+        <a href="https://uifrommars.com/arquitectura-de-la-informacion/">UI from Mars — Arquitectura de la información</a>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

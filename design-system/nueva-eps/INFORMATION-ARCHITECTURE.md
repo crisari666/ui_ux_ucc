@@ -9,7 +9,8 @@
 
 ### Mapa visual (3 pasos)
 
-Abre en el navegador: [`information-architecture-map.html`](./information-architecture-map.html)
+- **Visual (HTML):** [`information-architecture-map.html`](./information-architecture-map.html)  
+- **Informe / Word (MD):** [`information-architecture-map.md`](./information-architecture-map.md)
 
 Sigue el método de [UI from Mars — Arquitectura de la información](https://uifrommars.com/arquitectura-de-la-informacion/):
 

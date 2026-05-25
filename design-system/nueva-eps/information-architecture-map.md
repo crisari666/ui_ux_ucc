@@ -7,7 +7,8 @@
 **Referencia:** [Arquitectura de la información — UI from Mars](https://uifrommars.com/arquitectura-de-la-informacion/) · Morville & Rosenfeld
 
 **Mapa visual interactivo:** `information-architecture-map.html`  
-**Documentación técnica ampliada:** `INFORMATION-ARCHITECTURE.md`
+**Documentación técnica ampliada:** `INFORMATION-ARCHITECTURE.md`  
+**Mapa de viaje (journey):** `../journey_map.html` · `../journey_map.md`
 
 ---
 

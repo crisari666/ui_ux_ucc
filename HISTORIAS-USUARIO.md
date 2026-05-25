@@ -25,7 +25,7 @@ Persona principal: **Carlos Mendoza**, afiliado régimen contributivo, 34 años,
 | Entrevista desk research nuevaeps.com.co | — | Revisión de pares del journey map |
 | Journey map + wireframes HTML | — | Checklist: ¿cubre el flujo demo completo? |
 
-**Entregables:** `journey_map.html`, `arquitectura_info.html`, `wireframes.html`
+**Entregables:** `design-system/journey_map.html`, `design-system/journey_map.md`, `design-system/nueva-eps/information-architecture-map.html`, wireframes
 
 ---
 
